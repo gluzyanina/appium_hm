@@ -3,6 +3,8 @@ require 'appium_lib'
 require 'rspec'
 require 'pry'
 
+require_relative 'movies'
+require_relative 'screen_actions'
 
 APP_PATH = ENV['APP'] ||  File.join(File.dirname(__FILE__), "..", "..", "Movies.app")
 DEFAULT_TIMEOUT = 20
@@ -19,11 +21,12 @@ def caps
     appium_lib: { wait: DEFAULT_TIMEOUT,
                   debug: false } }
 end
-binding.pry
-# Appium::Driver.new(caps)
-# Appium.promote_appium_methods ScreenActions
+# binding.pry
+Appium::Driver.new(caps)
+Appium.promote_appium_methods Movies
+Appium.promote_appium_methods ScreenActions
 
 World do
-  # Wikipedia.new
+  Movies.new
 end
 

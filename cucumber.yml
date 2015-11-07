@@ -1,0 +1,1 @@
+movies: --format html --out report.html --format pretty --format junit --out junit_format --tags @movies
